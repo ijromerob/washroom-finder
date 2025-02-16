@@ -59,13 +59,17 @@ function App() {
 
   return (
     <>
-      <h1>Welcome to Washroom Finder</h1>
+      <div>
+        <h1>Welcome to Washroom Finder</h1>
+      </div>
       {/* Coordinates for Edmonton in MapContainer */}
+
       <MapContainer
         ref={mapRef}
         center={[location.latitude, location.longitude]}
         zoom={13}
       >
+
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import './App.css';
 import { MapContainer, Marker, TileLayer, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { Icon } from 'leaflet'
+import { Icon } from 'leaflet';
 
 function MapUpdater({ location }) {
   const map = useMap();
@@ -17,9 +17,9 @@ function App() {
   const [washroomsLocations, setWashroomsLocations] = useState([]);
 
   const customIcon = new Icon({
-    iconUrl: "public/icon.png",
-    iconSize: [54, 54] // size in pixels, x * y
-  })
+    iconUrl: '../icon.png',
+    iconSize: [54, 54], // size in pixels, x * y
+  });
 
   const [location, setLocation] = useState({
     latitude: 53.631611,
@@ -29,7 +29,6 @@ function App() {
   const [error, setError] = useState(null);
 
   const mapRef = useRef(null);
-
 
   useEffect(() => {
     fetch('https://express-server-oktc.onrender.com/locations/alllocations')
@@ -77,7 +76,6 @@ function App() {
         center={[location.latitude, location.longitude]}
         zoom={13}
       >
-
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -87,7 +85,7 @@ function App() {
           <Marker
             key={washroom.id}
             position={[washroom.latitude, washroom.longitude]}
-            icon = {customIcon}
+            icon={customIcon}
           >
             <Popup>{washroom.location_name}</Popup>
           </Marker>

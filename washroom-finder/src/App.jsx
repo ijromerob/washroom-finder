@@ -1,40 +1,48 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import { MapContainer, TileLayer } from "react-leaflet"
+import { MapContainer, Marker, TileLayer, Popup } from "react-leaflet"
+import "leaflet/dist/leaflet.css";
+import MaxClusterGroup from 'react-leaflet-cluster'
+import MarkerClusterGroup from 'react-leaflet-cluster'
 
 function App() {
   const [count, setCount] = useState(0)
+  // Test markers
+  const markers = [
+    {
+      geocode: [48.86, 51.13],
+      popUp: "This is a washroom's location"
+    },
+    {
+      geocode: [48.96, 51.13],
+      popUp: "This is a washroom's location"
+    },
+    {
+      geocode: [48.86, 51.23],
+      popUp: "This is a washroom's location"
+    }
+  ];
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <MapContainer center = {[48.8566, 2.3522]} zoom = {13}>
+      <h1>Welcome to Washroom Finder</h1>
+      {/* Coordinates for Edmonton in MapContainer */}
+      <MapContainer center = {[53.631611, -113.323975]} zoom = {13}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
         />
+
+        <MarkerClusterGroup>
+          {markers.map(marker => (
+            <Marker position = {marker.geocode}>
+              <Popup>
+                {marker.popUp}
+              </Popup>
+            </Marker>
+          ))}
+        </MarkerClusterGroup>
       </MapContainer>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }

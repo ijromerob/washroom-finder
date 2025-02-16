@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import { MapContainer, Marker, TileLayer, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import MarkerClusterGroup from 'react-leaflet-cluster';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -41,14 +42,16 @@ function App() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {washroomsLocations.map((washroom, index) => (
-          <Marker
-            key={index}
-            position={[washroom.latitude, washroom.longitude]}
-          >
-            <Popup>{washroom.location_name}</Popup>
-          </Marker>
-        ))}
+        <MarkerClusterGroup>
+          {washroomsLocations.map((washroom, index) => (
+            <Marker
+              key={index}
+              position={[washroom.latitude, washroom.longitude]}
+            >
+              <Popup>{washroom.location_name}</Popup>
+            </Marker>
+          ))}
+        </MarkerClusterGroup>
       </MapContainer>
     </>
   );

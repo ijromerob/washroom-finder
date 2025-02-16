@@ -2,10 +2,15 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import { MapContainer, Marker, TileLayer, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import { Icon } from 'leaflet'
 
 function App() {
   const [count, setCount] = useState(0);
   const [washroomsLocations, setWashroomsLocations] = useState([]);
+  const customIcon = new Icon({
+    iconUrl: "public/icon.png",
+    iconSize: [54, 54] // size in pixels, x * y
+  })
 
   useEffect(() => {
     fetch('https://express-server-oktc.onrender.com/locations/alllocations')
@@ -29,6 +34,7 @@ function App() {
           <Marker
             key={index}
             position={[washroom.latitude, washroom.longitude]}
+            icon = {customIcon}
           >
             <Popup>{washroom.location_name}</Popup>
           </Marker>

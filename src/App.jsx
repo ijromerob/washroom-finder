@@ -23,7 +23,7 @@ function App() {
 
   return (
     <>
-      <div className="container">
+      <div>
         <h1>Welcome to Washroom Finder</h1>
       </div>
       {/* Coordinates for Edmonton in MapContainer */}

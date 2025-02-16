@@ -23,9 +23,11 @@ function App() {
 
   return (
     <>
-      <h1>Welcome to Washroom Finder</h1>
+      <div className="container">
+        <h1>Welcome to Washroom Finder</h1>
+      </div>
       {/* Coordinates for Edmonton in MapContainer */}
-      <MapContainer center={[53.631611, -113.323975]} zoom={13}>
+      <MapContainer center={[53.5461, -113.4938]} zoom={13} className="leaflet-container">
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

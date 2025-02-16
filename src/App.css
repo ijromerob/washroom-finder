@@ -18,7 +18,13 @@ h1 {
   color: white;
   text-align: center;
   padding-top: .5em;
-  text-shadow: 2px 4px 4px rgb(46 91 173 / 0.6);
+  font-family: 'Trebuchet MS';
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+  backdrop-filter: blur(4px);
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  margin-top: 2rem;
+  display: inline-block;
   font-size: 3em;
   margin-top: 0;
 }

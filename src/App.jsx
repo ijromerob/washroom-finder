@@ -1,10 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { MapContainer, Marker, TileLayer, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 function App() {
   const [count, setCount] = useState(0);
+  const [washroomsLocations, setWashroomsLocations] = useState([]);
+
+  useEffect(() => {
+    fetch('https://express-server-oktc.onrender.com/locations/alllocations')
+      .then((response) => response.json())
+      .then((data) => {
+        setWashroomsLocations(data);
+      });
+  }, []);
+
   // Test markers
   const markers = [
     {
@@ -31,15 +41,14 @@ function App() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {/* <MarkerClusterGroup>
-          {markers.map(marker => (
-            <Marker position = {marker.geocode}>
-              <Popup>
-                {marker.popUp}
-              </Popup>
-            </Marker>
-          ))}
-        </MarkerClusterGroup> */}
+        {washroomsLocations.map((washroom, index) => (
+          <Marker
+            key={index}
+            position={[washroom.latitude, washroom.longitude]}
+          >
+            <Popup>{washroom.location_name}</Popup>
+          </Marker>
+        ))}
       </MapContainer>
     </>
   );

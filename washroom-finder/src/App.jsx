@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { MapContainer, TileLayer } from "react-leaflet"
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,6 +18,12 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+      <MapContainer center = {[48.8566, 2.3522]} zoom = {13}>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+        />
+      </MapContainer>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}

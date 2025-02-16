@@ -16,8 +16,13 @@ function App() {
   const [count, setCount] = useState(0);
   const [washroomsLocations, setWashroomsLocations] = useState([]);
 
-  const customIcon = new Icon({
-    iconUrl: '../icon.png',
+  const toiletIcon = new Icon({
+    iconUrl: '../toiletIcon.png',
+    iconSize: [54, 54], // size in pixels, x * y
+  });
+
+  const userIcon = new Icon({
+    iconUrl: '../userIcon.png',
     iconSize: [54, 54], // size in pixels, x * y
   });
 
@@ -81,11 +86,18 @@ function App() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
+        <Marker
+          position={[location.latitude, location.longitude]}
+          icon={userIcon}
+        >
+        <Popup>{"Your Location"}</Popup>
+        </Marker>
+
         {washroomsLocations.map((washroom) => (
           <Marker
             key={washroom.id}
             position={[washroom.latitude, washroom.longitude]}
-            icon={customIcon}
+            icon={toiletIcon}
           >
             <Popup>{washroom.location_name}</Popup>
           </Marker>

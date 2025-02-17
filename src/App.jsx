@@ -1,15 +1,17 @@
 import { useEffect, useState, useRef } from 'react';
 import './App.css';
 import {
-  MapContainer,
-  Marker,
-  TileLayer,
-  Popup,
-  useMap,
-  useMapEvent,
+MapContainer,
+Marker,
+TileLayer,
+Popup,
+useMap,
+useMapEvent,
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
+import L from 'leaflet';
+import 'leaflet-routing-machine';
 import Form from './Form';
 
 function MapUpdater({ location }) {
@@ -31,11 +33,32 @@ function MapClickHandler({ setSelectedLocation, setShowForm }) {
   return null;
 }
 
+function Routing({ userLocation, destination }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (!map) return;
+
+    const routingControl = L.Routing.control({
+      waypoints: [
+        L.latLng(userLocation.latitude, userLocation.longitude),
+        L.latLng(destination.latitude, destination.longitude)
+      ],
+      routeWhileDragging: true,
+    }).addTo(map);
+
+    return () => map.removeControl(routingControl);
+  }, [map, userLocation, destination]);
+
+  return null;
+}
+
 function App() {
   const [count, setCount] = useState(0);
   const [washroomsLocations, setWashroomsLocations] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const [destination, setDestination] = useState({});
 
   const toiletIcon = new Icon({
     iconUrl: '../toiletIcon.png',
@@ -141,9 +164,12 @@ function App() {
             position={[washroom.latitude, washroom.longitude]}
             icon={toiletIcon}
           >
-            <Popup>{washroom.location_name}</Popup>
+          {/* Create a button to get coordinates for pathfinding */}
+            <Popup>{washroom.location_name} <button onClick={() => {setDestination({latitude:washroom.latitude, longitude:washroom.longitude})}}>directions</button></Popup>
           </Marker>
         ))}
+
+        <Routing userLocation={location} destination={destination} />
       </MapContainer>
     </>
   );

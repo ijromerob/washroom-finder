@@ -62,6 +62,8 @@ body {
   display: flex;
   align-items: top;
   justify-content: left;
+  max-width: 40vw;
+  max-height: 70vh;
 }
 
 /* Close button for leaflet sidebar */

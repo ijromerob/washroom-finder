@@ -97,10 +97,19 @@ function App() {
       </div>
 
       {showForm && selectedLocation && (
-        <Form
-          selectedLatitude={selectedLocation.selectedLatitude}
-          selectedLongitude={selectedLocation.selectedLongitude}
-        />
+        <div>
+          <button
+            onClick={() => {
+              setShowForm(false);
+            }}
+          >
+            CLOSE
+          </button>
+          <Form
+            selectedLatitude={selectedLocation.selectedLatitude}
+            selectedLongitude={selectedLocation.selectedLongitude}
+          />
+        </div>
       )}
       {/* Coordinates for Edmonton in MapContainer */}
 

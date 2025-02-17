@@ -54,7 +54,42 @@ body {
   background-color: white;
   height: 80vh;
   overflow: auto;
+  border-radius: 1vw;
+  margin-top: 1vh;
+  margin-right: 1vh;
+  padding: 1vh;
+  box-shadow: 0 4px 10px #add5ff; /* Soft shadow */
+  display: flex;
+  align-items: top;
+  justify-content: left;
 }
+
+/* Close button for leaflet sidebar */
+.leaflet-top.leaflet-right .close-button {
+  background-color: #7F9AB7;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  position: absolute;
+  top: 10px; /* Position at the top */
+  left: 10px; /* Position at the left */
+  z-index: 1000; /* Ensures it stays above */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.leaflet-top.leaflet-right .close-button:hover {
+  background-color: #5f7a99;
+}
+
 
 .leaflet-routing-container.leaflet-bar.leaflet-control {
   margin-top: -0.7vh;

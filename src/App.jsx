@@ -65,6 +65,14 @@ function App() {
     getLocation();
   }, []);
 
+  useEffect(() => {
+    if (showForm) {
+      document.body.classList.add("form-open");
+    } else {
+      document.body.classList.remove("form-open");
+    }
+  }, [showForm]);
+
   const getLocation = () => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
@@ -95,15 +103,8 @@ function App() {
       <div>
         <h1>Welcome to Washroom Finder</h1>
       </div>
-
-      {showForm && selectedLocation && (
-        <Form
-          selectedLatitude={selectedLocation.selectedLatitude}
-          selectedLongitude={selectedLocation.selectedLongitude}
-        />
-      )}
+  
       {/* Coordinates for Edmonton in MapContainer */}
-
       <MapContainer
         ref={mapRef}
         center={[location.latitude, location.longitude]}
@@ -113,31 +114,38 @@ function App() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-
+  
         <MapClickHandler
           setSelectedLocation={setSelectedLocation}
           setShowForm={setShowForm}
         />
-
-        <Marker
-          position={[location.latitude, location.longitude]}
-          icon={userIcon}
-        >
+  
+        <Marker position={[location.latitude, location.longitude]} icon={userIcon}>
           <Popup>{'Your Location'}</Popup>
         </Marker>
-
+  
         {washroomsLocations.map((washroom) => (
-          <Marker
-            key={washroom.id}
-            position={[washroom.latitude, washroom.longitude]}
-            icon={toiletIcon}
-          >
+          <Marker key={washroom.id} position={[washroom.latitude, washroom.longitude]} icon={toiletIcon}>
             <Popup>{washroom.location_name}</Popup>
           </Marker>
         ))}
       </MapContainer>
+  
+      {/* Move the Form below the map */}
+      {showForm && selectedLocation && (
+      <div className="form-container">
+        {/* Close Button */}
+        <button className="close-button" onClick={() => setShowForm(false)}>✖</button>
+
+        <Form
+          selectedLatitude={selectedLocation.selectedLatitude}
+          selectedLongitude={selectedLocation.selectedLongitude}
+        />
+      </div>
+    )}
     </>
   );
+  
 }
 
 export default App;

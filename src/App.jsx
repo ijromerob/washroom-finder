@@ -1,8 +1,16 @@
 import { useEffect, useState, useRef } from 'react';
 import './App.css';
-import { MapContainer, Marker, TileLayer, Popup, useMap, useMapEvent } from 'react-leaflet';
+import {
+  MapContainer,
+  Marker,
+  TileLayer,
+  Popup,
+  useMap,
+  useMapEvent,
+} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
+import Form from './Form';
 
 function MapUpdater({ location }) {
   const map = useMap();
@@ -12,9 +20,13 @@ function MapUpdater({ location }) {
   return null;
 }
 
-function MapClickHandler() {
+function MapClickHandler({ setSelectedLocation, setShowForm }) {
   useMapEvent('click', (e) => {
-    alert(`Lat, Lon: ${e.latlng.lat}, ${e.latlng.lng}`);
+    setSelectedLocation({
+      selectedLatitude: e.latlng.lat,
+      selectedLongitude: e.latlng.lng,
+    });
+    setShowForm(true);
   });
   return null;
 }
@@ -22,6 +34,8 @@ function MapClickHandler() {
 function App() {
   const [count, setCount] = useState(0);
   const [washroomsLocations, setWashroomsLocations] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState(null);
 
   const toiletIcon = new Icon({
     iconUrl: '../toiletIcon.png',
@@ -81,6 +95,13 @@ function App() {
       <div>
         <h1>Welcome to Washroom Finder</h1>
       </div>
+
+      {showForm && selectedLocation && (
+        <Form
+          selectedLatitude={selectedLocation.selectedLatitude}
+          selectedLongitude={selectedLocation.selectedLongitude}
+        />
+      )}
       {/* Coordinates for Edmonton in MapContainer */}
 
       <MapContainer
@@ -93,13 +114,16 @@ function App() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        <MapClickHandler/>
+        <MapClickHandler
+          setSelectedLocation={setSelectedLocation}
+          setShowForm={setShowForm}
+        />
 
         <Marker
           position={[location.latitude, location.longitude]}
           icon={userIcon}
         >
-        <Popup>{"Your Location"}</Popup>
+          <Popup>{'Your Location'}</Popup>
         </Marker>
 
         {washroomsLocations.map((washroom) => (

@@ -64,6 +64,7 @@ function Form({ selectedLatitude, selectedLongitude }) {
           type="text"
           value={locationName}
           onChange={(e) => setLocationName(e.target.value)}
+          required
         />
       </label>
       <label>
@@ -72,6 +73,7 @@ function Form({ selectedLatitude, selectedLongitude }) {
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
+          required
         />
       </label>
       <label>
@@ -80,6 +82,7 @@ function Form({ selectedLatitude, selectedLongitude }) {
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          required
         />
       </label>
       <label>
@@ -88,6 +91,7 @@ function Form({ selectedLatitude, selectedLongitude }) {
           type="text"
           value={accessibilityNotes}
           onChange={(e) => setAccessibilityNotes(e.target.value)}
+          required
         />
       </label>
       <label>
@@ -96,6 +100,7 @@ function Form({ selectedLatitude, selectedLongitude }) {
           type="text"
           value={hours}
           onChange={(e) => setHours(e.target.value)}
+          required
         />
       </label>
       <label>
@@ -104,6 +109,7 @@ function Form({ selectedLatitude, selectedLongitude }) {
           type="text"
           value={seasonal}
           onChange={(e) => setSeasonal(e.target.value)}
+          required
         />
       </label>
       <label>
@@ -112,6 +118,7 @@ function Form({ selectedLatitude, selectedLongitude }) {
           type="phone"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
+          required
         />
       </label>
       <label>
@@ -120,6 +127,7 @@ function Form({ selectedLatitude, selectedLongitude }) {
           type="text"
           value={webLink}
           onChange={(e) => setWebLink(e.target.value)}
+          required
         />
       </label>
       <label>
@@ -128,6 +136,8 @@ function Form({ selectedLatitude, selectedLongitude }) {
           type="number"
           value={latitude}
           onChange={(e) => setLatitude(e.target.value)}
+          required
+          readOnly
         />
       </label>
       <label>
@@ -136,6 +146,8 @@ function Form({ selectedLatitude, selectedLongitude }) {
           type="number"
           value={longitude}
           onChange={(e) => setLongitude(e.target.value)}
+          required
+          readOnly
         />
       </label>
       <label>
@@ -144,6 +156,8 @@ function Form({ selectedLatitude, selectedLongitude }) {
           type="text"
           value={status}
           onChange={(e) => setStatus(e.target.value)}
+          required
+          readOnly
         />
       </label>
       <button type="submit">Propose</button>

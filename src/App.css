@@ -1,5 +1,7 @@
 /* Make sure the root and body fully cover the screen */
-html, body, #root {
+html,
+body,
+#root {
   height: 100vh;
   width: 100vw;
   margin: 0;
@@ -18,23 +20,22 @@ h1 {
   color: white;
   text-align: center;
   width: 90vw;
-  padding-top: .5em;
+  padding-top: 0.5em;
   font-family: 'Trebuchet MS';
   background: #e3bf9fb8; /* Semi-transparent white */
-  text-shadow: #7F9AB7 3px 3px 2px;
+  text-shadow: #7f9ab7 3px 3px 2px;
   padding: 1rem 2rem;
   border-radius: 12px;
   display: inline-block;
   font-size: 3em;
   margin-top: 1vh !important;
   margin-bottom: 1vh !important;
-  
 }
 
 /* Sizing of map container */
 .leaflet-container {
   height: 99vh !important; /* Force full height */
-  width: 99vw !important;  /* Force full width */
+  width: 99vw !important; /* Force full width */
   margin-bottom: 1vh !important;
   margin-top: 0vh !important;
   border-radius: 1vw !important;
@@ -48,7 +49,6 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
-
 
 .leaflet-top.leaflet-right {
   background-color: white;
@@ -66,7 +66,7 @@ body {
 
 /* Close button for leaflet sidebar */
 .leaflet-top.leaflet-right .close-button {
-  background-color: #7F9AB7;
+  background-color: #7f9ab7;
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -89,7 +89,6 @@ body {
 .leaflet-top.leaflet-right .close-button:hover {
   background-color: #5f7a99;
 }
-
 
 .leaflet-routing-container.leaflet-bar.leaflet-control {
   margin-top: -0.7vh;
@@ -125,18 +124,17 @@ body {
   font-size: 1rem;
 }
 
-
 /* Submit button styling */
 .form-container .close-button {
-  background-color: #7F9AB7;
+  background-color: #7f9ab7;
   color: white;
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
   border: none;
-  border-radius: 50%; 
+  border-radius: 50%;
   width: 30px;
-  height: 30px; 
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,7 +146,6 @@ body {
   padding: 0; /* Remove padding, adjust with width/height */
   z-index: 1000; /* Ensures the button is above everything else */
 }
-
 
 .form-container .close-button:hover {
   background-color: #5f7a99;
@@ -162,4 +159,13 @@ body {
   background-color: #5f7a99;
 }
 
+/* this will adjust the display of directions when there is a small screen device */
 
+@media screen and (max-width: 600px) {
+  .leaflet-top.leaflet-right {
+    height: 20vh;
+    width: 90vw;
+    margin-top: 1vh;
+    margin-right: 1vh;
+  }
+}

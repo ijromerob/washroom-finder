@@ -25,11 +25,6 @@ function App() {
     iconSize: [54, 54], // size in pixels, x * y
   });
 
-  const destinationIcon = new Icon({
-    iconUrl: '../toiletRedIcon.png',
-    iconSize: [54, 54], // size in pixels, x * y
-  });
-
   const [location, setLocation] = useState({
     latitude: 53.631611,
     longitude: -113.323975,

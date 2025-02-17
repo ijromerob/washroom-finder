@@ -49,6 +49,19 @@ body {
   background-repeat: no-repeat;
 }
 
+
+.leaflet-top.leaflet-right {
+  background-color: white;
+  height: 80vh;
+  overflow: auto;
+}
+
+.leaflet-routing-container.leaflet-bar.leaflet-control {
+  margin-top: -0.7vh;
+  margin-left: 1.5vh;
+  border: none;
+}
+
 /* Form container styling */
 .form-container {
   background: #f3ab6b59; /* White with slight transparency */
@@ -113,4 +126,5 @@ body {
 .form-container button:hover {
   background-color: #5f7a99;
 }
+
 

@@ -14,6 +14,7 @@ function App() {
   const [showForm, setShowForm] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [destination, setDestination] = useState({});
+  const [showDirections, setShowDirections] = useState(false);
 
   const toiletIcon = new Icon({
     iconUrl: '../toiletIcon.png',
@@ -119,6 +120,7 @@ function App() {
                     latitude: washroom.latitude,
                     longitude: washroom.longitude,
                   });
+                  setShowDirections(true);
                 }}
               >
                 directions
@@ -127,8 +129,13 @@ function App() {
           </Marker>
         ))}
 
-        <Routing userLocation={location} destination={destination} />
+        {showDirections && <Routing userLocation={location} destination={destination} />}
       </MapContainer>
+
+      {/* Button to close directions */}
+      {showDirections && (
+        <button onClick={() => setShowDirections(false)}>Close Directions</button>
+      )}
 
       {/* Move the Form below the map */}
       {showForm && selectedLocation && (

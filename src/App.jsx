@@ -60,7 +60,6 @@ function App() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          console.log(position);
           setLocation({
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,

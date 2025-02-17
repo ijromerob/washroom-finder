@@ -50,7 +50,11 @@ function Form({ selectedLatitude, selectedLongitude }) {
       }
 
       const data = await response.json();
+      alert('Location proposed successfully!');
       console.log('Success:', data);
+
+      // reload the whole page to show the new location
+      window.location.reload();
     } catch (error) {
       console.error('Error:', error);
     }

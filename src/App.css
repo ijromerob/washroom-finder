@@ -20,8 +20,8 @@ h1 {
   width: 90vw;
   padding-top: .5em;
   font-family: 'Trebuchet MS';
-  background: rgba(239, 115, 26, 0.297); /* Semi-transparent white */
-  text-shadow: rgb(98, 135, 203) 3px 3px 2px;
+  background: #e3bf9fb8; /* Semi-transparent white */
+  text-shadow: #7F9AB7 3px 3px 2px;
   padding: 1rem 2rem;
   border-radius: 12px;
   display: inline-block;

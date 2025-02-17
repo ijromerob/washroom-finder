@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import './App.css';
-import { MapContainer, Marker, TileLayer, Popup, useMap } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer, Popup, useMap, useMapEvent } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
 
@@ -9,6 +9,13 @@ function MapUpdater({ location }) {
   useEffect(() => {
     map.setView([location.latitude, location.longitude], 13);
   }, [location, map]);
+  return null;
+}
+
+function MapClickHandler() {
+  useMapEvent('click', (e) => {
+    alert(`Lat, Lon: ${e.latlng.lat}, ${e.latlng.lng}`);
+  });
   return null;
 }
 
@@ -85,6 +92,8 @@ function App() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+
+        <MapClickHandler/>
 
         <Marker
           position={[location.latitude, location.longitude]}

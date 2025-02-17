@@ -1,57 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
 import './App.css';
-import {
-  MapContainer,
-  Marker,
-  TileLayer,
-  Popup,
-  useMap,
-  useMapEvent,
-} from 'react-leaflet';
+import { MapContainer, Marker, TileLayer, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
-import L from 'leaflet';
 import 'leaflet-routing-machine';
 import Form from './Form';
-
-function MapUpdater({ location }) {
-  const map = useMap();
-  useEffect(() => {
-    map.setView([location.latitude, location.longitude], 13);
-  }, [location, map]);
-  return null;
-}
-
-function MapClickHandler({ setSelectedLocation, setShowForm }) {
-  useMapEvent('click', (e) => {
-    setSelectedLocation({
-      selectedLatitude: e.latlng.lat,
-      selectedLongitude: e.latlng.lng,
-    });
-    setShowForm(true);
-  });
-  return null;
-}
-
-function Routing({ userLocation, destination }) {
-  const map = useMap();
-
-  useEffect(() => {
-    if (!map) return;
-
-    const routingControl = L.Routing.control({
-      waypoints: [
-        L.latLng(userLocation.latitude, userLocation.longitude),
-        L.latLng(destination.latitude, destination.longitude),
-      ],
-      routeWhileDragging: true,
-    }).addTo(map);
-
-    return () => map.removeControl(routingControl);
-  }, [map, userLocation, destination]);
-
-  return null;
-}
+import { MapClickHandler } from './components/MapClickHandler';
+import { Routing } from './components/Routing';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -73,7 +28,7 @@ function App() {
   const destinationIcon = new Icon({
     iconUrl: '../toiletRedIcon.png',
     iconSize: [54, 54], // size in pixels, x * y
-  })
+  });
 
   const [location, setLocation] = useState({
     latitude: 53.631611,

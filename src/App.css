@@ -17,61 +17,26 @@ html, body, #root {
 h1 {
   color: white;
   text-align: center;
+  width: 90vw;
   padding-top: .5em;
   font-family: 'Trebuchet MS';
-  background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
-  backdrop-filter: blur(4px);
+  background: rgba(239, 115, 26, 0.297); /* Semi-transparent white */
+  text-shadow: rgb(98, 135, 203) 3px 3px 2px;
   padding: 1rem 2rem;
   border-radius: 12px;
-  margin-top: 2rem;
   display: inline-block;
   font-size: 3em;
-  margin-top: 0;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  margin-top: 1vh !important;
+  margin-bottom: 1vh !important;
+  
 }
 
 /* Sizing of map container */
 .leaflet-container {
   height: 99vh !important; /* Force full height */
   width: 99vw !important;  /* Force full width */
-  margin: 1vh !important;
+  margin-bottom: 1vh !important;
+  margin-top: 0vh !important;
   border-radius: 1vw !important;
   box-sizing: border-box;
 }

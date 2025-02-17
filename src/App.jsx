@@ -1,12 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
 import './App.css';
 import {
-MapContainer,
-Marker,
-TileLayer,
-Popup,
-useMap,
-useMapEvent,
+  MapContainer,
+  Marker,
+  TileLayer,
+  Popup,
+  useMap,
+  useMapEvent,
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
@@ -42,7 +42,7 @@ function Routing({ userLocation, destination }) {
     const routingControl = L.Routing.control({
       waypoints: [
         L.latLng(userLocation.latitude, userLocation.longitude),
-        L.latLng(destination.latitude, destination.longitude)
+        L.latLng(destination.latitude, destination.longitude),
       ],
       routeWhileDragging: true,
     }).addTo(map);
@@ -90,9 +90,9 @@ function App() {
 
   useEffect(() => {
     if (showForm) {
-      document.body.classList.add("form-open");
+      document.body.classList.add('form-open');
     } else {
-      document.body.classList.remove("form-open");
+      document.body.classList.remove('form-open');
     }
   }, [showForm]);
 
@@ -127,22 +127,6 @@ function App() {
         <h1>Welcome to Washroom Finder</h1>
       </div>
 
-      {showForm && selectedLocation && (
-        <div>
-          <button
-            onClick={() => {
-              setShowForm(false);
-            }}
-          >
-            CLOSE
-          </button>
-          <Form
-            selectedLatitude={selectedLocation.selectedLatitude}
-            selectedLongitude={selectedLocation.selectedLongitude}
-          />
-        </div>
-      )}
-
       {/* Coordinates for Edmonton in MapContainer */}
       <MapContainer
         ref={mapRef}
@@ -153,47 +137,61 @@ function App() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-  
+
         <MapClickHandler
           setSelectedLocation={setSelectedLocation}
           setShowForm={setShowForm}
         />
-  
-        <Marker position={[location.latitude, location.longitude]} icon={userIcon}>
+
+        <Marker
+          position={[location.latitude, location.longitude]}
+          icon={userIcon}
+        >
           <Popup>{'Your Location'}</Popup>
         </Marker>
-  
-        {washroomsLocations.map((washroom) => (
 
+        {washroomsLocations.map((washroom) => (
           <Marker
             key={washroom.id}
             position={[washroom.latitude, washroom.longitude]}
             icon={toiletIcon}
           >
-          {/* Create a button to get coordinates for pathfinding */}
-            <Popup>{washroom.location_name} <button onClick={() => {setDestination({latitude:washroom.latitude, longitude:washroom.longitude})}}>directions</button></Popup>
-
+            {/* Create a button to get coordinates for pathfinding */}
+            <Popup>
+              {washroom.location_name}{' '}
+              <button
+                onClick={() => {
+                  setDestination({
+                    latitude: washroom.latitude,
+                    longitude: washroom.longitude,
+                  });
+                }}
+              >
+                directions
+              </button>
+            </Popup>
           </Marker>
         ))}
 
         <Routing userLocation={location} destination={destination} />
       </MapContainer>
-  
+
       {/* Move the Form below the map */}
       {showForm && selectedLocation && (
-      <div className="form-container">
-        {/* Close Button */}
-        <button className="close-button" onClick={() => setShowForm(false)}>✖</button>
+        <div className="form-container">
+          {/* Close Button */}
+          <button className="close-button" onClick={() => setShowForm(false)}>
+            ✖
+          </button>
 
-        <Form
-          selectedLatitude={selectedLocation.selectedLatitude}
-          selectedLongitude={selectedLocation.selectedLongitude}
-        />
-      </div>
-    )}
+          <Form
+            selectedLatitude={selectedLocation.selectedLatitude}
+            selectedLongitude={selectedLocation.selectedLongitude}
+          />
+        </div>
+      )}
     </>
   );
-  
 }
 
 export default App;
